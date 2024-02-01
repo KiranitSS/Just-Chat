@@ -71,9 +71,6 @@ function SetAvatar() {
                 isLoading ? <Container>
                     <img src={loader} alt="loader" className="loader" />
                 </Container> : (
-
-
-
                     <Container>
                         <div className="title-container">
                             <h1>Pick an Avatar for your profile!</h1>
