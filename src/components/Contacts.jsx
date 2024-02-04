@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import Logo from "../assets/Logo.png";
 
-function Contacts({ contacts, currentUser }) {
+function Contacts({ contacts, currentUser, changeChat }) {
     const [currentUserName, setCurrentUserName] = useState(undefined);
     const [currentUserImage, setCurrentUserImage] = useState(undefined);
     const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -12,11 +12,11 @@ function Contacts({ contacts, currentUser }) {
             setCurrentUserImage(currentUser.avatarImage);
             setCurrentUserName(currentUser.username);
         }
-
-        const changeCurrentUser = (index, contact) => {
-
-        }
     }, [currentUser]);
+    const changeCurrentUser = (index, contact) => {
+        setCurrentSelected(index);
+        changeChat(contact);
+    }
 
     return (
         <>
@@ -28,24 +28,24 @@ function Contacts({ contacts, currentUser }) {
                             <h3>Just Chat</h3>
                         </div>
                         <div className="contacts">
-                            {
-                                contacts.map((contact, index) => {
-                                    return (
-                                        <div
-                                            className={`contact ${index === currentSelected ? "selected" : ""}`}
-                                            key={index}
-                                        >
-                                            <div className="avatar">
-                                                <img
-                                                    src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-                                                    alt="avatar" />
-                                            </div>
-                                            <div className="username">
-                                                <h3>{contact.username}</h3>
-                                            </div>
+                            {contacts.map((contact, index) => {
+                                return (
+                                    <div
+                                        className={`contact ${index === currentSelected ? "selected" : ""}`}
+                                        key={index}
+                                        onClick={() => changeCurrentUser(index, contact)}
+                                    >
+                                        <div className="avatar">
+                                            <img
+                                                src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+                                                alt="avatar" />
                                         </div>
-                                    )
-                                })
+                                        <div className="username">
+                                            <h3>{contact.username}</h3>
+                                        </div>
+                                    </div>
+                                )
+                            })
                             }
                         </div>
                         <div className="current-user">
@@ -72,7 +72,8 @@ display: grid;
 grid-template-rows: 10% 75% 15%;
 overflow: hidden;
 background-color: #c57a09;
-border-right: 0.3rem solid #51013f; 
+border-right: 0.3rem solid #51013f;
+
 .brand {
     display: flex;
     align-items: center;
@@ -93,7 +94,16 @@ border-right: 0.3rem solid #51013f;
     align-items: center;
     overflow: auto;
     gap: 0.8rem;
-    .contact {
+    overflow: scroll;
+    scrollbar-color: #ffffff39 transparent;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar{
+        width: 0.3rem;
+        &-thumb {
+            background-color: #ffffff39;
+        }
+    }
+    .contact {    
         background-color: #ffffff39;
         min-height: 5rem;
         width: 90%;
@@ -104,6 +114,7 @@ border-right: 0.3rem solid #51013f;
         align-items: center;
         display: flex;
         transition: 0.5s ease-in-out;
+
         .avatar {
             img {
                 height: 3rem;
@@ -114,9 +125,10 @@ border-right: 0.3rem solid #51013f;
                 color: white;
             }
         }
-        .selected {
-            background-color: #db952a; 
-        }
+    }
+
+    .selected {
+        background-color: #e29520; 
     }
 }
 .current-user {
