@@ -49,11 +49,12 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 1rem;
-background-color: #e08c0d;
+background-color: #f1960d;
 .container {
     height: 85vh;
     width: 85vw;
-    background-color: #c57a09;
+    background-color: #de8600;
+    border: 0.3rem solid #8b006c;
     display: grid;
     grid-template-columns: 25% 75%;
     @media screen and (min-width: 720px) and (max-width:1080px) {
