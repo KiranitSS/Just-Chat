@@ -128,7 +128,7 @@ border-right: 0.3rem solid #51013f;
     }
 
     .selected {
-        background-color: #e29520; 
+        background-color: #8b006c; 
     }
 }
 .current-user {
