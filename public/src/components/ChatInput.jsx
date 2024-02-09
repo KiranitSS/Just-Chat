@@ -42,7 +42,7 @@ export default function ChatInput({handleSendMessage}) {
                 placeholder="Message" 
                 value={msg} 
                 onChange={(e) => setMsg(e.target.value)} />
-                <button className="submit">
+                <button type="submit">
                     <IoMdSend />
                 </button>
             </form>
@@ -52,6 +52,7 @@ export default function ChatInput({handleSendMessage}) {
 
 const Container = styled.div`
 display: grid;
+align-items: center;
 grid-template-columns: 5% 95%;
 padding: 0 2rem;
 background-color: #ffffff39;
@@ -60,7 +61,6 @@ background-color: #ffffff39;
     align-items: center;
     color: white;
     gap: 1rem;
-    padding-top: 0.5rem;
     .emoji {
         position: relative;
         svg {
@@ -120,9 +120,9 @@ background-color: #ffffff39;
     display: flex;
     align-content: center;
     gap: 2rem;
+    background-color: #ffffff34;
     input {
         width: 90%;
-        height: 60%;
         background-color: transparent;
         border: none;
         color: white;

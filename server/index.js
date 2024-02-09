@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json({limit: '50mb'}));
 
 app.use(cors());
 app.use("/api/auth", userRoutes);
+app.use("/api/messages", messageRoutes);
 
 const PORT = parseInt(process.env.PORT);
 
